@@ -1,5 +1,0 @@
-开发环境：Linux（Ubuntu Desktop 14.04）
-前端：QT
-库：boost、OpenCV
-版本控制：GitHub
-工程管理：CMake
