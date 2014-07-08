@@ -5,6 +5,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Traffic_signMainWindow w;
-    w.show;
+    w.show();
     return a.exec();
 }

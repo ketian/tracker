@@ -1,0 +1,14 @@
+-I/usr/local/include/opencv
+-I/usr/local/include
+-I/home/ketian/Documents/code/traffic-sign/app
+-I/home/ketian/Documents/code/traffic-sign/app/.
+-I/home/ketian/Documents/code/traffic-sign/app/View
+-I/usr/include/qt4
+-I/usr/include/qt4/QtGui
+-I/usr/include/qt4/QtCore
+-DQT_NO_DEBUG
+-DQT_GUI_LIB
+-DQT_CORE_LIB
+-o
+/home/ketian/Documents/code/traffic-sign/app/View/moc_traffic_signmainwindow.cxx
+/home/ketian/Documents/code/traffic-sign/app/View/traffic_signmainwindow.cpp
