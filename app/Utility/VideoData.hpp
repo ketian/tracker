@@ -16,8 +16,8 @@ public:
     VideoData();
     virtual ~VideoData();
     void OpenVideo(const string &);
-    Mat GetFrame();
-    Mat GetFrame(int);
+    Mat * GetFrame();
+    Mat * GetFrame(int);
 };
 
 #endif
@@ -45,7 +45,7 @@ void OpenVideo(const string & FileName)
     totFrame = cap.get(CV_CAP_PROP_FRAME_COUNT);
 }
 
-Mat GetFrame()
+Mat * GetFrame()
 {
     if(currentFrame > totFrame)
     {
@@ -60,10 +60,10 @@ Mat GetFrame()
         exit(0);
     }
 
-    return frame;
+    return & frame;
 }
 
-Mat GetFrame(int givenFrame)
+Mat * GetFrame(int givenFrame)
 {
     if(givenFrame > totFrame)
     {
@@ -77,5 +77,5 @@ Mat GetFrame(int givenFrame)
         exit(0);
     }
 
-    return frame;
+    return &frame;
 }
