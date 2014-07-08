@@ -1,5 +1,5 @@
-#ifndef OpenCommand
-#define OpenCommand
+#ifndef Traffic_Sign_OpenCommand
+#define Traffic_Sign_OpenCommand
 
 class OpenCommand: public ICommand {
 private:

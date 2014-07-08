@@ -1,5 +1,5 @@
-#ifndef Traffic_Sign_ImageData
-#define Traffic_Sign_ImageData
+#ifndef ImageData
+#define ImageData
 
 #include <opencv2/opencv.hpp>
 
