@@ -4,8 +4,7 @@
 class TrafficSignViewModel {
 private:
     shared_ptr<ICommand> sp_OpenCommand;
-    shared_ptr<VideoData> sp_VideoData;
-    shared_ptr<ImageData> sp_ImageData;
+    shared_ptr<TrafficSignModel> sp_Model;
     shared_ptr<INotification> events;
 
 public:
@@ -18,4 +17,7 @@ public:
         return sp_ImageData->GetImage();
     };
 
+    void OpenVideo(const string& filename) {
+        sp_Model->OpenVideo(filename);
+    }
 };

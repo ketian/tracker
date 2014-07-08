@@ -1,18 +1,24 @@
 #ifndef traffic_sign_Model_h
 #define traffic_sign_Model_h
 
+#include <memory>
 #include <string>
+
+using namespace std;
+
+typedef list<MarkData> MarksData;
 
 class TrafficSignModel {
 private:
-    shared_ptr<ImageData> image;
-    shared_ptr<VideoData> video;
-    //result;
+    shared_ptr<ImageData> sp_image;
+    shared_ptr<VideoData> sp_video;
+    shared_ptr<MarksData> sp_result;
+    
 public:
     TrafficSignModel();
     ~TrafficSignModel();
 
-    void LoadVideo(const string &);
+    void OpenVideo(const string &filename);
     void NextFrame();
     shared_ptr<ImageData> GetImage();
     void Compute();

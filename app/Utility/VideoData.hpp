@@ -1,12 +1,13 @@
 #ifndef VideoData
 #define VideoData
 
-#include ...
+#include <opencv2/opencv.hpp>
 
 class VideoData {
 private:
     
 public:
+
 };
 
 #endif

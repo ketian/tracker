@@ -1,0 +1,30 @@
+#ifndef OpenCommand
+#define OpenCommand
+
+class OpenCommandParam: public ICommandParam {
+private:
+    string video_filename;
+    string mark_filename;
+
+public:
+    int GetParamNum() { return 1; };
+    void SetParam(const string &s) { filename=s; };
+    void* GetParam(int index) { 
+        if (index==0)
+            return video_filename;
+        if (index==1)
+            return mark_filename;
+    };
+};
+
+class OpenCommand: public ICommand {
+private:
+    TrafficSignViewModel* m_ViewModel;
+public:
+    OpenCommand(TrafficSignViewModel & m);
+    ~OpenCommand();
+    void Execute(shared_ptr <ICommandParam>& param) {
+        m_ViewModel.OpenVideo(*((string*)param->GetParam(0)));
+    };
+};
+

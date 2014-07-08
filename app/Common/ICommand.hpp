@@ -1,6 +1,9 @@
 #ifndef traffic_sign_ICommand_h
 #define traffic_sign_Icommand_h
 
+#include <memory>
+using namespace std;
+
 class ICommandParam {
 
 public:

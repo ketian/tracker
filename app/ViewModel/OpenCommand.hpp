@@ -3,7 +3,7 @@
 
 class OpenCommand: public ICommand {
 private:
-    TrafficSignViewModel& m_ViewModel;
+    TrafficSignViewModel* m_ViewModel;
 public:
     OpenCommand(TrafficSignViewModel & m);
     ~OpenCommand();
