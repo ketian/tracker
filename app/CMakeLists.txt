@@ -14,12 +14,14 @@ CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
 FIND_PACKAGE (OpenCV 2.4 REQUIRED)
 
 #-----------------   common setting -------------------
-SET(ROOT_DIR ../../)
+SET(ROOT_DIR ../)
 SET(EXECUTABLE_OUTPUT_PATH ${ROOT_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 INCLUDE_DIRECTORIES(
-	"./" 
-	"View"
+	./
+	./View
+	${local_QT_PATH}/include
+	${local_INCLUDE_DIRS_ALL}
 )
 
 #MESSAGE(STATUS "CMAKE_CURRENT_BINARY_DIR " ${CMAKE_CURRENT_BINARY_DIR})
@@ -32,7 +34,10 @@ SET(src_main
 
 FILE(GLOB h_main
     "*.hpp")
-SET(h_qt "./View/traffic_signmainwindow.cpp")
+SET(h_qt 
+#traffic_signmainwindow.h
+"./View/traffic_signmainwindow.h"
+)
 
 
 #MESSAGE(STATUS "CPP: " ${src_main})
@@ -42,7 +47,10 @@ SET(h_qt "./View/traffic_signmainwindow.cpp")
 FIND_PACKAGE(Qt REQUIRED)
 #MESSAGE(STATUS "QT_USE_FILE" ${QT_USE_FILE}) # include qt cmake files
 INCLUDE(${QT_USE_FILE})
-SET(src_forms ./View/traffic_signmainwindow.ui)
+SET(src_forms 
+#traffic_signmainwindow.ui
+./View/traffic_signmainwindow.ui
+)
 
 QT4_WRAP_UI(headers_ui ${src_forms})
 QT4_WRAP_CPP(h_moc ${h_qt})
@@ -64,8 +72,9 @@ SET(appname main)
 ADD_EXECUTABLE(${appname} ${src_main} ${h_moc} ${headers_ui} ${h_main})
 #MESSAGE(STATUS "ui: " ${headers_ui})
 #MESSAGE(STATUS "qt: " ${QT_LIBRARIES})
-TARGET_LINK_LIBRARIES( ${appname}
-		${QT_QTMAIN_LIBRARY} 
+TARGET_LINK_LIBRARIES( 
+	${appname}
+	${QT_QTMAIN_LIBRARY} 
         ${QT_LIBRARIES}
         ${boost_LIBRARIES}
         ${opencv_LIBRARIES}
