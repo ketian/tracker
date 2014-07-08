@@ -20,7 +20,7 @@ public:
 
     void OpenVideo(const string &filename);
     void NextFrame();
-    shared_ptr<ImageData> GetImage();
+    ImageData* GetImage();
     void Compute();
     void Draw();
 };
