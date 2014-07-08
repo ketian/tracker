@@ -11,7 +11,7 @@ private:
 public:
     TrafficSignViewModel() {
         sp_OpenCommand = static_pointer_cast<ICommand, OpenCommand>(
-                make_shared<OpenCommand>(*this));
+                make_shared<OpenCommand>(*(new OpenCommand(*this))));
     };
 
     shared_ptr<cv::Mat> GetImage() {
