@@ -4,7 +4,7 @@
 class OpenCommandParam: public ICommandParam {
 private:
     string video_filename;
-    string mark_filename;
+    string mark_filename;//标记好的信息
 
 public:
     int GetParamNum() { return 1; };

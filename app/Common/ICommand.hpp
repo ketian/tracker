@@ -1,5 +1,5 @@
 #ifndef traffic_sign_ICommand_h
-#define traffic_sign_Icommand_h
+#define traffic_sign_ICommand_h
 
 #include <memory>
 using namespace std;
