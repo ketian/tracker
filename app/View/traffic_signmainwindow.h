@@ -16,7 +16,7 @@ public:
     ~Traffic_signMainWindow();
     void SetOpenCommand(std::shared_ptr <ICommand> & ptr)
     {
-    	sp_OpenCommand = ptr;
+    	sp_OpenCommand = std::dynamic_pointer_cast<OpenCommand> ptr;
     }
 private slots:
     void on_VideoButton_clicked();
@@ -25,7 +25,7 @@ private slots:
 
 private:
     Ui::Traffic_signMainWindow *ui;
-    std::shared_ptr <ICommand> sp_OpenCommand;
+    std::shared_ptr <OpenCommand> sp_OpenCommand;
 };
 
 #endif // TRAFFIC_SIGNMAINWINDOW_H
