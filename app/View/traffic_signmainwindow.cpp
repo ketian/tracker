@@ -20,5 +20,5 @@ void Traffic_signMainWindow::on_VideoButton_clicked()
 
 void Traffic_signMainWindow::on_ExitButton_clicked()
 {
-
+	exit(0);
 }
