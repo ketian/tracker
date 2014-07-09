@@ -8,7 +8,7 @@ cv::Mat * ImageData::GetImage()
 	return &(this->image);
 }
 
-void ImageData::SetImage(cv::Mat input_image);
+void ImageData::SetImage(const cv::Mat &input_image)
 {
 	image=input_image.clone();
 }

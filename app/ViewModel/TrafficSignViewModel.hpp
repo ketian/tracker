@@ -1,41 +1,28 @@
 #ifndef Traffic_Sign_ViewModel_h
 #define Traffic_Sign_ViewModel_h
 
-#include <memory>
+#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 #include <string>
 #include <opencv2/opencv.hpp>
 #include "Common/ICommand.hpp"
 #include "Common/Notification.hpp"
 #include "Model/TrafficSignModel.hpp"
-#include "ViewModel/OpenCommand.hpp"
-
-using namespace std;
+#include <QMainWindow>
 
 class TrafficSignViewModel {
 private:
-    shared_ptr<ICommand> sp_OpenCommand;
-    shared_ptr<TrafficSignModel> sp_Model;
-    shared_ptr<INotification> events;
-
+    boost::shared_ptr<ICommand> sp_OpenCommand;
+    boost::shared_ptr<TrafficSignModel> sp_Model;
+    boost::shared_ptr<INotification> events;
+    QImage image_view;
+    
 public:
-    TrafficSignViewModel() {
-        sp_OpenCommand = static_pointer_cast<ICommand, OpenCommand>(
-                make_shared<OpenCommand>(*this));
-    };
-
-    cv::Mat *GetImage() {
-        return sp_ImageData->GetImage();
-    };
-
-    shared_ptr<ICommand> GetOpenCommand() {
-        return sp_OpenCommand;
-    };
-
-    void SetModel(shared_ptr<TrafficSignModel> &model) {
-        sp_Model = model;
-    };
-
-    void OpenVideo(const string& filename) {
-        sp_Model->OpenVideo(filename);
-    };
+    TrafficSignViewModel();
+    QImage *GetImage();
+    boost::shared_ptr<ICommand> GetOpenCommand();
+    void SetModel(boost::shared_ptr<TrafficSignModel> &model);
+    void OpenVideo(const std::string& filename);
 };
+
+#endif

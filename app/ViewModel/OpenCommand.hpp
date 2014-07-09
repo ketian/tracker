@@ -2,24 +2,25 @@
 #define Traffic_Sign_OpenCommand_h
 
 #include <string>
-#include <memory>
+#include <boost/shared_ptr.hpp>
 #include "Common/ICommand.hpp"
-
-using namespace std;
+#include "TrafficSignViewModel.hpp"
 
 class OpenCommand: public ICommand {
 private:
     TrafficSignViewModel *m_ViewModel;
 
+
 public:
-    OpenCommand(TrafficSignViewModel &m) {
-        m_ViewModel = &m;
+    OpenCommand(TrafficSignViewModel *m) {
+        m_ViewModel = m;
     };
 
     ~OpenCommand() {};
 
-    void Execute(shared_ptr <ICommandParam>& param) {
-        m_ViewModel.OpenVideo(*((string*)param->GetParam(0)));
+    void Execute(const boost::shared_ptr<ICommandParam> &param) {
+        m_ViewModel->OpenVideo(*((std::string*)param->GetParam(0)));
     };
 };
 
+#endif

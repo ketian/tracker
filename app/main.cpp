@@ -2,7 +2,8 @@
 #include <QApplication>
 #include "Model/TrafficSignModel.hpp"
 #include "ViewModel/TrafficSignViewModel.hpp"
-#include <memory>
+#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 
 using namespace std;
 
@@ -11,12 +12,13 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     Traffic_signMainWindow w;
 
-    shared_ptr<TrafficSignModel> sp_TrafficSignModel = 
-        make_shared<TrafficSignModel>();
-    shared_ptr<TrafficSignViewModel> sp_TrafficSignViewModel = 
-        make_shared<TrafficSignViewModel>();
+    boost::shared_ptr<TrafficSignModel> sp_TrafficSignModel = 
+        boost::make_shared<TrafficSignModel>();
+    boost::shared_ptr<TrafficSignViewModel> sp_TrafficSignViewModel = 
+        boost::make_shared<TrafficSignViewModel>();
 
     sp_TrafficSignViewModel->SetModel(sp_TrafficSignModel);
+    w.SetViewModel(sp_TrafficSignViewModel);
 
     w.SetOpenCommand(sp_TrafficSignViewModel->GetOpenCommand());
     w.show();

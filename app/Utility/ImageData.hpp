@@ -1,9 +1,7 @@
-#ifndef Traffic_Sign_ImageData
-#define Traffic_Sign_ImageData
+#ifndef Traffic_Sign_ImageData_h
+#define Traffic_Sign_ImageData_h
 
 #include <opencv2/opencv.hpp>
-
-using namespace cv;
 
 class ImageData {
 private:

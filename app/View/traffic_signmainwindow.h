@@ -2,7 +2,12 @@
 #define TRAFFIC_SIGNMAINWINDOW_H
 
 #include <QMainWindow>
-#include <memory>
+#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
+#include "Common/OpenCommandParam.hpp"
+#include "ViewModel/OpenCommand.hpp"
+#include "ViewModel/TrafficSignViewModel.hpp"
+
 namespace Ui {
 class Traffic_signMainWindow;
 }
@@ -14,10 +19,9 @@ class Traffic_signMainWindow : public QMainWindow
 public:
     explicit Traffic_signMainWindow(QWidget *parent = 0);
     ~Traffic_signMainWindow();
-    void SetOpenCommand(std::shared_ptr <ICommand> & ptr)
-    {
-    	sp_OpenCommand = std::dynamic_pointer_cast<OpenCommand> ptr;
-    }
+    void SetOpenCommand(const boost::shared_ptr<ICommand> &ptr);
+    void SetViewModel(const boost::shared_ptr<TrafficSignViewModel> &ptr);
+
 private slots:
     void on_VideoButton_clicked();
 
@@ -25,7 +29,8 @@ private slots:
 
 private:
     Ui::Traffic_signMainWindow *ui;
-    std::shared_ptr <OpenCommand> sp_OpenCommand;
+    boost::shared_ptr <OpenCommand> sp_OpenCommand;
+    boost::shared_ptr <TrafficSignViewModel> sp_ViewModel;
 };
 
 #endif // TRAFFIC_SIGNMAINWINDOW_H

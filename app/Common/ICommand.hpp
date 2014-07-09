@@ -1,14 +1,13 @@
 #ifndef traffic_sign_ICommand_h
 #define traffic_sign_ICommand_h
 
-#include <memory>
-using namespace std;
+#include <boost/shared_ptr.hpp>
 
 class ICommandParam {
 
 public:
-    ICommandParam();
-    virtual ~ICommandParam();
+    ICommandParam() {}
+    virtual ~ICommandParam() {}
     virtual int GetParamNum()=0;
     virtual void* GetParam(int index)=0;
 };
@@ -16,9 +15,9 @@ public:
 class ICommand {
 
 public:
-    ICommand();
-    virtual ~ICommand();
-    virtual void Execute(shared_ptr<ICommandParam>& param)=0;
+    ICommand() {}
+    virtual ~ICommand() {}
+    virtual void Execute(const boost::shared_ptr<ICommandParam> &param)=0;
 };
 
 #endif

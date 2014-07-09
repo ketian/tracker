@@ -41,6 +41,13 @@ Mat * VideoData::GetFrame()
         cout << "Fail to read the video!" << endl;
         exit(0);
     }
+///DEBUG
+//cout<<"Success to read"<<endl;
+//namedWindow("Display Image", CV_WINDOW_AUTOSIZE );
+//imshow("Display Image", frame);
+//waitKey(0);
+int x;
+cin>>x;
 
     return & frame;
 }
@@ -58,6 +65,5 @@ Mat * VideoData::GetFrame(int givenFrame)
         cout << "Fail to read the video!" << endl;
         exit(0);
     }
-
     return &frame;
 }

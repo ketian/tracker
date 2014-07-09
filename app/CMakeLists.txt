@@ -19,7 +19,11 @@ SET(EXECUTABLE_OUTPUT_PATH ${ROOT_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 INCLUDE_DIRECTORIES(
 	./
+	./Common
+	./Model
+	./Utility
 	./View
+	./ViewModel
 	${local_QT_PATH}/include
 	${local_INCLUDE_DIRS_ALL}
 )
@@ -27,13 +31,22 @@ INCLUDE_DIRECTORIES(
 #MESSAGE(STATUS "CMAKE_CURRENT_BINARY_DIR " ${CMAKE_CURRENT_BINARY_DIR})
 
 #-------------------------- add common files 	-------------------------
-SET(src_main
-    "main.cpp"
-    "./View/traffic_signmainwindow.cpp"
+FILE(GLOB src_main
+    "./*.cpp"
+    "./Model/*.cpp"
+    "./ViewModel/*.cpp"
+    "./View/*.cpp"
+    "./Utility/*.cpp"
     )
 
 FILE(GLOB h_main
-    "*.hpp")
+    "./*.hpp"
+    "./Model/*.hpp"
+    "./ViewModel/*.hpp"
+    "./View/*.hpp"
+    "./Utility/*.hpp"
+    )
+    
 SET(h_qt 
 #traffic_signmainwindow.h
 "./View/traffic_signmainwindow.h"
@@ -69,7 +82,9 @@ SET(opencv_LIBRARIES
 #------------------ build application -----------
 SET(appname main)
 
-ADD_EXECUTABLE(${appname} ${src_main} ${h_moc} ${headers_ui} ${h_main})
+ADD_EXECUTABLE(${appname} ${src_main} ${h_moc} ${headers_ui} ${h_main}
+
+)
 #MESSAGE(STATUS "ui: " ${headers_ui})
 #MESSAGE(STATUS "qt: " ${QT_LIBRARIES})
 TARGET_LINK_LIBRARIES( 
