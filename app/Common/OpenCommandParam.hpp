@@ -10,10 +10,11 @@ public:
     int GetParamNum() { return 1; };
     void SetParam(const string &s) { filename=s; };
     void* GetParam(int index) { 
-        if (index==0)
-            return video_filename;
-        if (index==1)
-            return mark_filename;
+        switch(index)
+        {
+        case 0: return video_filename; break;
+        case 1: return mark_filename; break;
+        }
     };
 };
 

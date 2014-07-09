@@ -5,18 +5,18 @@
 using namespace std;
 using namespace cv;
 
-VideoData()
+VideoData::VideoData()
 {
     currentFrame = 1;
     totFrame = 0;
 }
 
-~VideoData()
+VideoData::~VideoData()
 {
 
 }
 
-void OpenVideo(const string & FileName)
+void VideoData::OpenVideo(const string & FileName)
 {
     cout << "File name is : " << FileName << endl;
     cap.open(FileName);
@@ -27,7 +27,7 @@ void OpenVideo(const string & FileName)
     totFrame = cap.get(CV_CAP_PROP_FRAME_COUNT);
 }
 
-Mat * GetFrame()
+Mat * VideoData::GetFrame()
 {
     if(currentFrame > totFrame)
     {
@@ -45,7 +45,7 @@ Mat * GetFrame()
     return & frame;
 }
 
-Mat * GetFrame(int givenFrame)
+Mat * VideoData::GetFrame(int givenFrame)
 {
     if(givenFrame > totFrame)
     {
