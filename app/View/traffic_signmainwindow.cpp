@@ -15,7 +15,11 @@ Traffic_signMainWindow::~Traffic_signMainWindow()
 
 void Traffic_signMainWindow::on_VideoButton_clicked()
 {
-
+	QString fileName = QFileDialog::getOpenFileName(this,tr("Open Video"),".",tr("Video Files (*.mp4 *.avi)"));
+        	qDebug()<<"filenames:"<<fileName;
+	std::shared_ptr<OpenCommandParam> param=std::make_shared<OpenCommandParam>(*(new OpenCommandParam));
+	param->SetParam(fileName.toStdString());
+	sp_OpenCommand->Execute(std::static_pointer_cast<ICommandParam>(param));
 }
 
 void Traffic_signMainWindow::on_ExitButton_clicked()
