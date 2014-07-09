@@ -2,7 +2,7 @@
 #define TRAFFIC_SIGNMAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <memory>
 namespace Ui {
 class Traffic_signMainWindow;
 }
@@ -14,7 +14,10 @@ class Traffic_signMainWindow : public QMainWindow
 public:
     explicit Traffic_signMainWindow(QWidget *parent = 0);
     ~Traffic_signMainWindow();
-
+    void SetOpenCommand(std::shared_ptr <ICommand> & ptr)
+    {
+    	sp_OpenCommand = ptr;
+    }
 private slots:
     void on_VideoButton_clicked();
 
@@ -22,6 +25,7 @@ private slots:
 
 private:
     Ui::Traffic_signMainWindow *ui;
+    std::shared_ptr <ICommand> sp_OpenCommand;
 };
 
 #endif // TRAFFIC_SIGNMAINWINDOW_H

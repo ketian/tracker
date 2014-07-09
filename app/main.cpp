@@ -16,9 +16,9 @@ int main(int argc, char *argv[])
     shared_ptr<TrafficSignViewModel> sp_TrafficSignViewModel = 
         make_shared<TrafficSignViewModel>();
 
-    sp_TrafficSignModel->SetModel(sp_TrafficSignModel);
+    sp_TrafficSignViewModel->SetModel(sp_TrafficSignModel);
 
-    w.SetOpenCommand(sp_TrafficSignViewModel->GetOpenCommand);
+    w.SetOpenCommand(sp_TrafficSignViewModel->GetOpenCommand());
     w.show();
 
     return a.exec();
