@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>538</width>
-    <height>354</height>
+    <width>901</width>
+    <height>584</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>320</width>
-      <height>240</height>
+      <width>640</width>
+      <height>480</height>
      </rect>
     </property>
     <property name="text">
@@ -30,10 +30,10 @@
    <widget class="QLabel" name="SignLabel">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>20</y>
-      <width>111</width>
-      <height>71</height>
+      <x>700</x>
+      <y>30</y>
+      <width>151</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="text">
@@ -43,8 +43,8 @@
    <widget class="QPushButton" name="VideoButton">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>210</y>
+      <x>720</x>
+      <y>410</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -56,8 +56,8 @@
    <widget class="QPushButton" name="ExitButton">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>260</y>
+      <x>720</x>
+      <y>460</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -69,8 +69,8 @@
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>100</y>
+      <x>690</x>
+      <y>180</y>
       <width>161</width>
       <height>81</height>
      </rect>
@@ -82,7 +82,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>538</width>
+     <width>901</width>
      <height>25</height>
     </rect>
    </property>
