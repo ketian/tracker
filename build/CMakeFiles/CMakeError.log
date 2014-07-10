@@ -1,0 +1,96 @@
+Determining if the Q_WS_WIN exist failed with the following output:
+Change Dir: /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2996039794/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2996039794.dir/build.make CMakeFiles/cmTryCompileExec2996039794.dir/build
+make[1]: Entering directory `/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2996039794.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec2996039794.dir/CheckSymbolExists.cxx.o -c /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_WIN’ was not declared in this scope
+   return ((int*)(&Q_WS_WIN))[argc];
+                   ^
+make[1]: Leaving directory `/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp'
+make[1]: *** [CMakeFiles/cmTryCompileExec2996039794.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTryCompileExec2996039794/fast] Error 2
+
+File /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1099115716/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1099115716.dir/build.make CMakeFiles/cmTryCompileExec1099115716.dir/build
+make[1]: Entering directory `/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1099115716.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec1099115716.dir/CheckSymbolExists.cxx.o -c /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_QWS’ was not declared in this scope
+   return ((int*)(&Q_WS_QWS))[argc];
+                   ^
+make[1]: Leaving directory `/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp'
+make[1]: *** [CMakeFiles/cmTryCompileExec1099115716.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTryCompileExec1099115716/fast] Error 2
+
+File /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec409568016/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec409568016.dir/build.make CMakeFiles/cmTryCompileExec409568016.dir/build
+make[1]: Entering directory `/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec409568016.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec409568016.dir/CheckSymbolExists.cxx.o -c /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_MAC’ was not declared in this scope
+   return ((int*)(&Q_WS_MAC))[argc];
+                   ^
+make[1]: Leaving directory `/home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp'
+make[1]: *** [CMakeFiles/cmTryCompileExec409568016.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTryCompileExec409568016/fast] Error 2
+
+File /home/ketian/Documents/code/traffic-sign/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

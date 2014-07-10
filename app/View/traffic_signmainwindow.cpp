@@ -19,8 +19,8 @@ void Traffic_signMainWindow::SetOpenCommand(const boost::shared_ptr<ICommand> &p
     sp_OpenCommand = boost::dynamic_pointer_cast<OpenCommand>(ptr);
 }
 
-void Traffic_signMainWindow::SetViewModel(const boost::shared_ptr<TrafficSignViewModel> &ptr) {
-    sp_ViewModel = ptr;
+void Traffic_signMainWindow::SetImage(const boost::shared_ptr<QImage> &ptr) {
+    sp_Image = ptr;
 }
 
 void Traffic_signMainWindow::on_VideoButton_clicked()
@@ -32,7 +32,7 @@ void Traffic_signMainWindow::on_VideoButton_clicked()
 	boost::shared_ptr<OpenCommandParam> param = boost::make_shared<OpenCommandParam>();
 	param->SetParam(fileName.toStdString());
 	sp_OpenCommand->Execute(boost::static_pointer_cast<ICommandParam>(param));
-    ui->VideoLabel->setPixmap(QPixmap::fromImage(*sp_ViewModel->GetImage()));
+    //ui->VideoLabel->setPixmap(QPixmap::fromImage(*sp_ViewModel->GetImage()));
 }
 
 void Traffic_signMainWindow::on_ExitButton_clicked()

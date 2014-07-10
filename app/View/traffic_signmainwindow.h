@@ -20,7 +20,7 @@ public:
     explicit Traffic_signMainWindow(QWidget *parent = 0);
     ~Traffic_signMainWindow();
     void SetOpenCommand(const boost::shared_ptr<ICommand> &ptr);
-    void SetViewModel(const boost::shared_ptr<TrafficSignViewModel> &ptr);
+    void SetImage(const boost::shared_ptr<QImage> &ptr);
 
 private slots:
     void on_VideoButton_clicked();
@@ -31,6 +31,7 @@ private:
     Ui::Traffic_signMainWindow *ui;
     boost::shared_ptr <OpenCommand> sp_OpenCommand;
     boost::shared_ptr <TrafficSignViewModel> sp_ViewModel;
+    boost::shared_ptr <QImage> sp_Image;
 };
 
 #endif // TRAFFIC_SIGNMAINWINDOW_H

@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
         boost::make_shared<TrafficSignViewModel>();
 
     sp_TrafficSignViewModel->SetModel(sp_TrafficSignModel);
-    w.SetViewModel(sp_TrafficSignViewModel);
+    w.SetImage(sp_TrafficSignViewModel->GetImagePtr());
 
     w.SetOpenCommand(sp_TrafficSignViewModel->GetOpenCommand());
     w.show();
