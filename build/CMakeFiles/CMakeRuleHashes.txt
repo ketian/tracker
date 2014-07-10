@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-5a65e2ccf6d98356c2b3edef89c6cf96 app/View/moc_traffic_signmainwindow.cxx
-aea787f04835193640d6621d828a4509 app/ui_traffic_signmainwindow.h
