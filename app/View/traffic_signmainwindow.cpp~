@@ -28,12 +28,11 @@ void Traffic_signMainWindow::on_VideoButton_clicked()
 	QString fileName = QFileDialog::getOpenFileName(this, 
             tr("Open Video"), ".", 
             tr("Video Files (*.mp4 *.avi)"));
-	qDebug()<<"filenames:"<<fileName;
+    qDebug()<<"filenames:"<<fileName;
 	boost::shared_ptr<OpenCommandParam> param = boost::make_shared<OpenCommandParam>();
 	param->SetParam(fileName.toStdString());
 	sp_OpenCommand->Execute(boost::static_pointer_cast<ICommandParam>(param));
-	ui->VideoLabel->setPixmap(QPixmap::fromImage(*sp_ViewModel->GetImage()));
-	ui->VideoLabel->setScaledContents(true);
+    ui->VideoLabel->setPixmap(QPixmap::fromImage(*sp_ViewModel->GetImage()));
 }
 
 void Traffic_signMainWindow::on_ExitButton_clicked()
