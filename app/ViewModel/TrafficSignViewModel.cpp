@@ -7,7 +7,7 @@ TrafficSignViewModel::TrafficSignViewModel() {
     sp_image_view = boost::make_shared<QImage>();
 }
 
-void TrafficSignViewModel::SetEvent(const shared_ptr<INotification> e) {
+void TrafficSignViewModel::SetEvent(const boost::shared_ptr<INotification> &e) {
     event = e;
 }
 
@@ -16,6 +16,22 @@ void TrafficSignViewModel::fireEvent(const std::string &property) {
 }
 
 boost::shared_ptr<QImage> TrafficSignViewModel::GetImagePtr() {
+    return sp_image_view;
+}
+
+boost::shared_ptr<ICommand> TrafficSignViewModel::GetOpenCommand() {
+    return sp_OpenCommand;
+}
+
+void TrafficSignViewModel::SetModel(boost::shared_ptr<TrafficSignModel> &model) {
+    sp_Model = model;
+}
+
+void TrafficSignViewModel::OpenVideo(const std::string& filename) {
+    sp_Model->OpenVideo(filename);
+    ///DEBUG
+    //std::cout<<"ViewModel opened video!"<<std::endl;
+    
     cv::Mat image = *sp_Model->GetImage()->GetImage();
     cv::Mat rgb;
     if(image.channels()==3)
@@ -34,19 +50,7 @@ boost::shared_ptr<QImage> TrafficSignViewModel::GetImagePtr() {
                                 image.cols*image.channels(),
                                 QImage::Format_RGB888);
     }
-    return sp_image_view;
-}
-
-boost::shared_ptr<ICommand> TrafficSignViewModel::GetOpenCommand() {
-    return sp_OpenCommand;
-}
-
-void TrafficSignViewModel::SetModel(boost::shared_ptr<TrafficSignModel> &model) {
-    sp_Model = model;
-}
-
-void TrafficSignViewModel::OpenVideo(const std::string& filename) {
-    sp_Model->OpenVideo(filename);
+    
     fireEvent("ImageData");
 }
 

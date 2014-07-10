@@ -3,14 +3,17 @@
 
 #include <string>
 #include "Common/INotification.hpp"
-
+#include "View/traffic_signmainwindow.h"
 class MainWindowSink: public INotification {
 private:
-    Traffic_SignMainWindow *p_MainWindow;
+    Traffic_signMainWindow *p_Window;
 
 public:
-    MainWindowSink(Traffic_SignMainWindow *p) {
-        p_MainWindow = p;
+    MainWindowSink(Traffic_signMainWindow *p):p_Window(p)
+    {
+       
     }
     void OnPropertyChanged(const std::string &property);
 };
+
+#endif

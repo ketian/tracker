@@ -14,6 +14,16 @@ Traffic_signMainWindow::~Traffic_signMainWindow()
 {
     delete ui;
 }
+QLabel * Traffic_signMainWindow::GetLabel(const std::string &s)
+{
+    if (s=="video") return ui->VideoLabel;
+    if (s=="sign") return ui->SignLabel;
+}
+
+boost::shared_ptr<QImage> Traffic_signMainWindow::GetImage()
+{
+    return sp_Image;
+}
 
 void Traffic_signMainWindow::SetOpenCommand(const boost::shared_ptr<ICommand> &ptr) {
     sp_OpenCommand = boost::dynamic_pointer_cast<OpenCommand>(ptr);
@@ -32,12 +42,10 @@ void Traffic_signMainWindow::on_VideoButton_clicked()
 	boost::shared_ptr<OpenCommandParam> param = boost::make_shared<OpenCommandParam>();
 	param->SetParam(fileName.toStdString());
 	sp_OpenCommand->Execute(boost::static_pointer_cast<ICommandParam>(param));
-<<<<<<< HEAD
+
     //ui->VideoLabel->setPixmap(QPixmap::fromImage(*sp_ViewModel->GetImage()));
-=======
-	ui->VideoLabel->setPixmap(QPixmap::fromImage(*sp_ViewModel->GetImage()));
-	ui->VideoLabel->setScaledContents(true);
->>>>>>> b9e085b80db49b06e7da7376e338f8782d406603
+	//ui->VideoLabel->setPixmap(QPixmap::fromImage(*sp_ViewModel->GetImage()));
+	//ui->VideoLabel->setScaledContents(true);
 }
 
 void Traffic_signMainWindow::on_ExitButton_clicked()
