@@ -6,8 +6,8 @@
 #include <boost/make_shared.hpp>
 #include <QtGui/QLabel>
 #include "Common/OpenCommandParam.hpp"
-#include "ViewModel/OpenCommand.hpp"
-#include "ViewModel/TrafficSignViewModel.hpp"
+#include "Common/ICommand.hpp"
+#include "Common/INotification.hpp"
 #include <string>
 
 namespace Ui {
@@ -21,6 +21,7 @@ class Traffic_signMainWindow : public QMainWindow
 public:
 	QLabel * GetLabel(const std::string &);
 	boost::shared_ptr<QImage> GetImage();
+    boost::shared_ptr<INotification> GetEvent();
     explicit Traffic_signMainWindow(QWidget *parent = 0);
     ~Traffic_signMainWindow();
     void SetOpenCommand(const boost::shared_ptr<ICommand> &ptr);
@@ -33,9 +34,9 @@ private slots:
 
 private:
     Ui::Traffic_signMainWindow *ui;
-    boost::shared_ptr <OpenCommand> sp_OpenCommand;
-    //boost::shared_ptr <TrafficSignViewModel> sp_ViewModel;
-    boost::shared_ptr <QImage> sp_Image;
+    boost::shared_ptr<ICommand> sp_OpenCommand;
+    boost::shared_ptr<QImage> sp_Image;
+    boost::shared_ptr<INotification> sp_Event;
 };
 
 #endif // TRAFFIC_SIGNMAINWINDOW_H

@@ -1,13 +1,17 @@
 #include "traffic_signmainwindow.h"
 #include "ui_traffic_signmainwindow.h"
+#include "MainWindowSink.hpp"
 #include <QFileDialog>
 #include <QDebug>
+#include <boost/make_shared.hpp>
 
 Traffic_signMainWindow::Traffic_signMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Traffic_signMainWindow)
 {
     ui->setupUi(this);
+    sp_Event = boost::static_pointer_cast<INotification>(
+            boost::make_shared<MainWindowSink>(this));
 }
 
 Traffic_signMainWindow::~Traffic_signMainWindow()
@@ -25,8 +29,13 @@ boost::shared_ptr<QImage> Traffic_signMainWindow::GetImage()
     return sp_Image;
 }
 
+boost::shared_ptr<INotification> Traffic_signMainWindow::GetEvent()
+{
+    return sp_Event;
+}
+
 void Traffic_signMainWindow::SetOpenCommand(const boost::shared_ptr<ICommand> &ptr) {
-    sp_OpenCommand = boost::dynamic_pointer_cast<OpenCommand>(ptr);
+    sp_OpenCommand = ptr; //boost::dynamic_pointer_cast<OpenCommand>(ptr);
 }
 
 void Traffic_signMainWindow::SetImage(const boost::shared_ptr<QImage> &ptr) {
