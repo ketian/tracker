@@ -73,11 +73,15 @@ void Traffic_signMainWindow::on_RunButton_clicked()
 {
     init_flag = true;
     
+    QString fileName = QFileDialog::getOpenFileName(this, 
+            tr("Open Mark Information"), ".", 
+            tr("Mark Files (*.txt)"));
+	qDebug()<<"filenames:"<<fileName;
     boost::shared_ptr<OpenCommandParam> param = boost::make_shared<OpenCommandParam>();
-	param->SetParam("33489.26.txt");
+	param->SetParam(fileName.toStdString());
 	sp_ReadCommand->Execute(boost::static_pointer_cast<ICommandParam>(param));
 
-    running_timer->start(10);
+    running_timer->start(50);
 }
 
 void Traffic_signMainWindow::on_ExitButton_clicked()

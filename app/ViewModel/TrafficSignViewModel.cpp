@@ -111,7 +111,7 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
     sp_Model->SetImage(result);
     RefreshImage();
     if (frameInd == tMark.frame) fireEvent("TrackDone");
-    ++frameInd;
+    frameInd += 1;
 }
 
 void TrafficSignViewModel::RefreshImage() {
