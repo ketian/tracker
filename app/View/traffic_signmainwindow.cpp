@@ -69,7 +69,7 @@ void Traffic_signMainWindow::on_VideoButton_clicked()
 	//ui->VideoLabel->setScaledContents(true);
 }
 
-void Traffic_signMainWindow::on_ExitButton_clicked()
+void Traffic_signMainWindow::on_RunButton_clicked()
 {
     init_flag = true;
     
@@ -78,8 +78,13 @@ void Traffic_signMainWindow::on_ExitButton_clicked()
 	sp_ReadCommand->Execute(boost::static_pointer_cast<ICommandParam>(param));
 
     running_timer->start(10);
-	//exit(0);
 }
+
+void Traffic_signMainWindow::on_ExitButton_clicked()
+{
+    exit(0);
+}
+
 
 void Traffic_signMainWindow::run()
 {

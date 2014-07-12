@@ -33,6 +33,7 @@ public:
 private slots:
     void on_VideoButton_clicked();
     void on_ExitButton_clicked();
+    void on_RunButton_clicked();
     void run();
 
 private:

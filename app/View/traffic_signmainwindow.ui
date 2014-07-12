@@ -43,8 +43,8 @@
    <widget class="QPushButton" name="VideoButton">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>410</y>
+      <x>660</x>
+      <y>440</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -56,8 +56,8 @@
    <widget class="QPushButton" name="ExitButton">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>460</y>
+      <x>780</x>
+      <y>440</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -74,6 +74,19 @@
       <width>161</width>
       <height>81</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RunButton">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>380</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Run</string>
     </property>
    </widget>
   </widget>
