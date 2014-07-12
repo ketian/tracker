@@ -22,6 +22,8 @@ int main(int argc, char *argv[])
     w.SetImage(sp_TrafficSignViewModel->GetImagePtr());
 
     w.SetOpenCommand(sp_TrafficSignViewModel->GetOpenCommand());
+    w.SetReadCommand(sp_TrafficSignViewModel->GetReadCommand());
+    w.SetRunCommand(sp_TrafficSignViewModel->GetRunCommand());
     w.show();
 
     return a.exec();

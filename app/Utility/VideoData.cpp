@@ -16,7 +16,7 @@ VideoData::~VideoData()
 
 }
 
-void VideoData::OpenVideo(const string & FileName)
+void VideoData::OpenVideo(const string &FileName)
 {
     cout << "File name is : " << FileName << endl;
     cap.open(FileName);

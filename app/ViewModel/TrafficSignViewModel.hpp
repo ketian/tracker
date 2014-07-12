@@ -14,6 +14,8 @@
 class TrafficSignViewModel {
 private:
     boost::shared_ptr<ICommand> sp_OpenCommand;
+    boost::shared_ptr<ICommand> sp_RunCommand;
+    boost::shared_ptr<ICommand> sp_ReadCommand;
     boost::shared_ptr<TrafficSignModel> sp_Model;
     //std::vector< boost::shared_ptr<INotification> > events;
     boost::shared_ptr<INotification> event;
@@ -24,10 +26,15 @@ private:
 public:
     TrafficSignViewModel();
     boost::shared_ptr<ICommand> GetOpenCommand();
+    boost::shared_ptr<ICommand> GetRunCommand();
+    boost::shared_ptr<ICommand> GetReadCommand();
     boost::shared_ptr<QImage> GetImagePtr();
     void SetEvent(const boost::shared_ptr<INotification> &e);
     void SetModel(boost::shared_ptr<TrafficSignModel> &model);
-    void OpenVideo(const std::string& filename);
+    void OpenVideo(const std::string &filename);
+    void TrackSign(const std::string &filename);
+    void ReadMark(const std::string &filename);
+    void RefreshImage();
 };
 
 #endif

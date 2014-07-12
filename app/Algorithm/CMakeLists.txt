@@ -19,14 +19,8 @@ SET(EXECUTABLE_OUTPUT_PATH ${ROOT_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 INCLUDE_DIRECTORIES(
 	./
-	./Common
-	./Model
-	./Utility
-	./View
-	./ViewModel
-	${local_QT_PATH}/include
-	${local_INCLUDE_DIRS_ALL}
 	/usr/include/eigen2
+	${local_INCLUDE_DIRS_ALL}
 )
 
 #MESSAGE(STATUS "CMAKE_CURRENT_BINARY_DIR " ${CMAKE_CURRENT_BINARY_DIR})
@@ -34,47 +28,18 @@ INCLUDE_DIRECTORIES(
 #-------------------------- add common files 	-------------------------
 FILE(GLOB src_main
     "./*.cpp"
-    "./Algorithm/*.cpp"
-    "./Algorithm/GraphUtils/*.cpp"
-    "./Model/*.cpp"
-    "./ViewModel/*.cpp"
-    "./View/*.cpp"
-    "./Utility/*.cpp"
+    "./GraphUtils/*.cpp"
     )
 
 FILE(GLOB h_main
-    "./*.hpp"
-    "./Algorithm/*.h"
-    "./Model/*.hpp"
-    "./ViewModel/*.hpp"
-    "./View/*.hpp"
-    "./Utility/*.hpp"
+    "./*.h"
     )
     
-SET(h_qt 
-#traffic_signmainwindow.h
-"./View/traffic_signmainwindow.h"
-)
-
-
 #MESSAGE(STATUS "CPP: " ${src_main})
 #MESSAGE(STATUS "H: " ${h_qt})
 
-#-----------------  set QT4 files ---------------
-FIND_PACKAGE(Qt REQUIRED)
-#MESSAGE(STATUS "QT_USE_FILE" ${QT_USE_FILE}) # include qt cmake files
-INCLUDE(${QT_USE_FILE})
-SET(src_forms 
-#traffic_signmainwindow.ui
-./View/traffic_signmainwindow.ui
-)
-
-QT4_WRAP_UI(headers_ui ${src_forms})
-QT4_WRAP_CPP(h_moc ${h_qt})
-
 #----------------- UNIX and WINDOWS difference -------------
 
-SET(QT_ROOT "/usr/share/qt4")
 SET(opencv_LIBRARIES
     opencv_core opencv_imgproc opencv_highgui opencv_ml
     opencv_video opencv_features2d
@@ -93,8 +58,6 @@ ADD_EXECUTABLE(${appname} ${src_main} ${h_moc} ${headers_ui} ${h_main}
 #MESSAGE(STATUS "qt: " ${QT_LIBRARIES})
 TARGET_LINK_LIBRARIES( 
 	${appname}
-	${QT_QTMAIN_LIBRARY} 
-        ${QT_LIBRARIES}
         ${boost_LIBRARIES}
         ${opencv_LIBRARIES}
         )
