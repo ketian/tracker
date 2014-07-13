@@ -8,6 +8,8 @@
 #include "Algorithm/Config.h"
 #include <fstream>
 
+#define SPEED 5
+
 using namespace std;
 using namespace cv;
 
@@ -107,7 +109,7 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
             const IntRect& bb = tracker.GetBB();
             Mat image(result, cv::Rect(bb.XMin(), bb.YMin(), bb.Width(), bb.Height()));
             char outImage[128];
-            sprintf(outImage, "image/%d.jpg", frameInd);
+            sprintf(outImage, "image/%d.jpg", frameInd/SPEED);
             //cout << "Write to: " << outImage << endl;
             imwrite(outImage, image);
         }
@@ -115,8 +117,8 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
     }
     sp_Model->SetImage(result);
     RefreshImage();
-    if (frameInd == tMark.frame) fireEvent("TrackDone");
-    frameInd += 1;
+    if (frameInd >= tMark.frame) fireEvent("TrackDone");
+    frameInd += SPEED;
 }
 
 void TrafficSignViewModel::RefreshImage() {
