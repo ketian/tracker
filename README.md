@@ -14,6 +14,14 @@
 - 工程管理：CMake 2.8
 - 版本控制：GitHub
 
+### 使用说明
+----
+1. `git clone https://github.com/Zhejiang-University-GKC/traffic-sign.git`
+2. `cd traffic-sign`
+3. `mkdir build`
+4. `cd build`
+5. `cp ../
+
 ### 队员分工
 ----
 按姓名首字母排序：
