@@ -25,12 +25,13 @@ Traffic_signMainWindow::~Traffic_signMainWindow()
 QLabel * Traffic_signMainWindow::GetLabel(const std::string &s)
 {
     if (s=="video") return ui->VideoLabel;
-    if (s=="sign") return ui->SignLabel;
+    if (s=="mark") return ui->SignLabel;
 }
 
-boost::shared_ptr<QImage> Traffic_signMainWindow::GetImage()
+boost::shared_ptr<QImage> Traffic_signMainWindow::GetImage(const int &x)
 {
-    return sp_Image;
+    if (x==0) return sp_Image;
+    else return sp_Mark;
 }
 
 boost::shared_ptr<INotification> Traffic_signMainWindow::GetEvent()
@@ -52,6 +53,10 @@ void Traffic_signMainWindow::SetRunCommand(const boost::shared_ptr<ICommand> &pt
 
 void Traffic_signMainWindow::SetImage(const boost::shared_ptr<QImage> &ptr) {
     sp_Image = ptr;
+}
+
+void Traffic_signMainWindow::SetMark(const boost::shared_ptr<QImage> &ptr) {
+    sp_Mark = ptr;
 }
 
 void Traffic_signMainWindow::on_VideoButton_clicked()
@@ -81,7 +86,7 @@ void Traffic_signMainWindow::on_RunButton_clicked()
 	param->SetParam(fileName.toStdString());
 	sp_ReadCommand->Execute(boost::static_pointer_cast<ICommandParam>(param));
 
-    running_timer->start(50);
+    running_timer->start(100);
 }
 
 void Traffic_signMainWindow::on_ExitButton_clicked()

@@ -8,6 +8,7 @@ using namespace std;
 
 TrafficSignModel::TrafficSignModel() {
     sp_image = boost::make_shared<ImageData>();
+    sp_mark = boost::make_shared<ImageData>();
     sp_video = boost::make_shared<VideoData>();
     sp_sMark = boost::make_shared<MarkData>();
     sp_tMark = boost::make_shared<MarkData>();
@@ -35,8 +36,9 @@ void TrafficSignModel::ReadMark(const string &filename) {
     fin.close();
 }
 
-boost::shared_ptr<ImageData> TrafficSignModel::GetImage() {
-    return sp_image;
+boost::shared_ptr<ImageData> TrafficSignModel::GetImage(int x) {
+    if (x==0) return sp_image;
+    else return sp_mark;
 }
 
 boost::shared_ptr<Config> TrafficSignModel::GetConfig() {
@@ -50,6 +52,10 @@ boost::shared_ptr<MarkData> TrafficSignModel::GetMark(int x) {
 
 void TrafficSignModel::SetImage(const cv::Mat &image) {
     sp_image->SetImage(image);
+}   
+
+void TrafficSignModel::SetMark(const cv::Mat &image) {
+    sp_mark->SetImage(image);
 }    
 
 cv::Mat *TrafficSignModel::GetFrame(int frameInd) {

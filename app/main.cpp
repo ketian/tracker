@@ -19,7 +19,8 @@ int main(int argc, char *argv[])
 
     sp_TrafficSignViewModel->SetModel(sp_TrafficSignModel);
     sp_TrafficSignViewModel->SetEvent(w.GetEvent());
-    w.SetImage(sp_TrafficSignViewModel->GetImagePtr());
+    w.SetImage(sp_TrafficSignViewModel->GetImagePtr(0));
+    w.SetMark(sp_TrafficSignViewModel->GetImagePtr(1));
 
     w.SetOpenCommand(sp_TrafficSignViewModel->GetOpenCommand());
     w.SetReadCommand(sp_TrafficSignViewModel->GetReadCommand());

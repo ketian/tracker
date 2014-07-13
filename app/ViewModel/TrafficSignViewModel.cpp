@@ -8,7 +8,7 @@
 #include "Algorithm/Config.h"
 #include <fstream>
 
-#define SPEED 5
+#define SPEED 4
 
 using namespace std;
 using namespace cv;
@@ -21,6 +21,7 @@ TrafficSignViewModel::TrafficSignViewModel() {
     sp_ReadCommand = boost::static_pointer_cast<ICommand, ReadCommand>(
             boost::make_shared<ReadCommand>(this));
     sp_image_view = boost::make_shared<QImage>();
+    sp_mark_view = boost::make_shared<QImage>();
 }
 
 void TrafficSignViewModel::SetEvent(const boost::shared_ptr<INotification> &e) {
@@ -31,8 +32,9 @@ void TrafficSignViewModel::fireEvent(const string &property) {
     event->OnPropertyChanged(property);
 }
 
-boost::shared_ptr<QImage> TrafficSignViewModel::GetImagePtr() {
-    return sp_image_view;
+boost::shared_ptr<QImage> TrafficSignViewModel::GetImagePtr(const int &x) {
+    if (x==0) return sp_image_view;
+    else return sp_mark_view;
 }
 
 boost::shared_ptr<ICommand> TrafficSignViewModel::GetOpenCommand() {
@@ -71,7 +73,7 @@ void rectangle(Mat& rMat, const FloatRect& rRect, const Scalar& rColour)
 
 void TrafficSignViewModel::TrackSign(const string &mode) {
 
-    //cout << sMark.frame << endl;
+    //cout << "TrackSign" << endl;
     
     static Config conf(*sp_Model->GetConfig());
     static Tracker tracker(conf);
@@ -112,9 +114,11 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
             sprintf(outImage, "image/%d.jpg", frameInd/SPEED);
             //cout << "Write to: " << outImage << endl;
             imwrite(outImage, image);
+            sp_Model->SetMark(image);
         }
         rectangle(result, tracker.GetBB(), CV_RGB(0, 255, 0));
     }
+    //else sp_Model->SetMark(result);
     sp_Model->SetImage(result);
     RefreshImage();
     if (frameInd >= tMark.frame) fireEvent("TrackDone");
@@ -122,7 +126,7 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
 }
 
 void TrafficSignViewModel::RefreshImage() {
-    cv::Mat image = *sp_Model->GetImage()->GetImage();
+    cv::Mat image = *sp_Model->GetImage(0)->GetImage();
     cv::Mat rgb;
     if(image.channels()==3)
     {
@@ -136,6 +140,25 @@ void TrafficSignViewModel::RefreshImage() {
     else
     {
         *sp_image_view = QImage((const unsigned char*)(image.data),
+                                image.cols,image.rows,
+                                image.cols*image.channels(),
+                                QImage::Format_RGB888);
+    }
+    fireEvent("ImageData");
+    
+    image = *sp_Model->GetImage(1)->GetImage();
+    if(image.channels()==3)
+    {
+        //cvt Mat BGR 2 QImage RGB
+        cvtColor(image,rgb,CV_BGR2RGB);
+        *sp_mark_view = QImage((const unsigned char*)(rgb.data),
+                                rgb.cols,rgb.rows,
+                                rgb.cols*rgb.channels(),
+                                QImage::Format_RGB888);
+    }
+    else
+    {
+        *sp_mark_view = QImage((const unsigned char*)(image.data),
                                 image.cols,image.rows,
                                 image.cols*image.channels(),
                                 QImage::Format_RGB888);

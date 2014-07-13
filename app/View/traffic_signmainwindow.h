@@ -20,14 +20,15 @@ class Traffic_signMainWindow : public QMainWindow
 
 public:
     QTimer *running_timer;
-	boost::shared_ptr<QImage> GetImage();
+	boost::shared_ptr<QImage> GetImage(const int &);
     boost::shared_ptr<INotification> GetEvent();
     explicit Traffic_signMainWindow(QWidget *parent = 0);
     ~Traffic_signMainWindow();
     void SetOpenCommand(const boost::shared_ptr<ICommand> &ptr);
     void SetReadCommand(const boost::shared_ptr<ICommand> &ptr);
     void SetRunCommand(const boost::shared_ptr<ICommand> &ptr);
-    void SetImage(const boost::shared_ptr<QImage> &ptr);    
+    void SetImage(const boost::shared_ptr<QImage> &ptr);
+    void SetMark(const boost::shared_ptr<QImage> &ptr);
     QLabel *GetLabel(const std::string &);
     
 private slots:
@@ -41,7 +42,7 @@ private:
     boost::shared_ptr<ICommand> sp_OpenCommand;
     boost::shared_ptr<ICommand> sp_ReadCommand;
     boost::shared_ptr<ICommand> sp_RunCommand;
-    boost::shared_ptr<QImage> sp_Image;
+    boost::shared_ptr<QImage> sp_Image, sp_Mark;
     boost::shared_ptr<INotification> sp_Event;
     bool init_flag;
 };

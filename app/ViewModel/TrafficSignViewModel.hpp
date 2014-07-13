@@ -19,7 +19,7 @@ private:
     boost::shared_ptr<TrafficSignModel> sp_Model;
     //std::vector< boost::shared_ptr<INotification> > events;
     boost::shared_ptr<INotification> event;
-    boost::shared_ptr<QImage> sp_image_view;
+    boost::shared_ptr<QImage> sp_image_view, sp_mark_view;
     
     void fireEvent(const std::string &property);
 
@@ -28,7 +28,7 @@ public:
     boost::shared_ptr<ICommand> GetOpenCommand();
     boost::shared_ptr<ICommand> GetRunCommand();
     boost::shared_ptr<ICommand> GetReadCommand();
-    boost::shared_ptr<QImage> GetImagePtr();
+    boost::shared_ptr<QImage> GetImagePtr(const int &);
     void SetEvent(const boost::shared_ptr<INotification> &e);
     void SetModel(boost::shared_ptr<TrafficSignModel> &model);
     void OpenVideo(const std::string &filename);

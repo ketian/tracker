@@ -14,7 +14,7 @@ typedef std::list<MarkData> MarksData;
 
 class TrafficSignModel {
 private:
-    boost::shared_ptr<ImageData> sp_image;
+    boost::shared_ptr<ImageData> sp_image, sp_mark;
     boost::shared_ptr<VideoData> sp_video;
     boost::shared_ptr<MarkData> sp_sMark, sp_tMark;
     boost::shared_ptr<Config> sp_config;
@@ -26,8 +26,9 @@ public:
 
     void OpenVideo(const std::string &filename);
     void SetImage(const cv::Mat &image);
+    void SetMark(const cv::Mat &image);
     void ReadMark(const std::string &filename);
-    boost::shared_ptr<ImageData> GetImage();
+    boost::shared_ptr<ImageData> GetImage(int);
     boost::shared_ptr<Config> GetConfig();
     boost::shared_ptr<MarkData> GetMark(int);
     cv::Mat *GetFrame(int frameInd);
