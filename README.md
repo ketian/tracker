@@ -14,17 +14,18 @@
 - 工程管理：CMake 2.8
 - 版本控制：GitHub
 
-### 使用说明
+### 编译运行
 ----
 1. 复制项目到本地：`git clone https://github.com/Zhejiang-University-GKC/traffic-sign.git`
 2. `cd traffic-sign`
 3. 可以在外部编译，先新建一个文件夹：`mkdir build`
 4. 拷贝配置文件：`cp config/* build/`
 5. `cd build`
-6. 编译：`cmake .. && make`
-7. 运行：`./main`
-8. 点击 **Video** 选择视频文件
-9. 点击 **Run** 选择需要追踪物体的初始信息并运行
+6. 如果需要保存追踪结果的截图，需要手动建立image文件夹：`mkdir image`
+7. 编译：`cmake .. && make`
+8. 运行：`./main`
+9. 点击 **Video** 选择视频文件
+10. 点击 **Run** 选择需要追踪物体的初始信息并运行
 
 *说明：由于依赖库的安装目录不同，可能需要在编译前修改 cmakelists.txt*
 
