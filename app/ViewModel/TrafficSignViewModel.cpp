@@ -8,7 +8,7 @@
 #include "Algorithm/Config.h"
 #include <fstream>
 
-#define SPEED 4
+#define SPEED 2
 
 using namespace std;
 using namespace cv;
@@ -68,7 +68,7 @@ void TrafficSignViewModel::ReadMark(const string &filename) {
 void rectangle(Mat& rMat, const FloatRect& rRect, const Scalar& rColour)
 {
 	IntRect r(rRect);
-	rectangle(rMat, Point(r.XMin(), r.YMin()), Point(r.XMax(), r.YMax()), rColour, 3);
+	rectangle(rMat, Point(r.XMin(), r.YMin()), Point(r.XMax(), r.YMax()), rColour, 2);
 }
 
 void TrafficSignViewModel::TrackSign(const string &mode) {
@@ -80,17 +80,21 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
     static FloatRect initBB;
     static int frameInd;
     static MarkData sMark, tMark;
+    
+    Mat result(conf.frameHeight, conf.frameWidth, CV_8UC3);
+    Mat frame;
+    Mat frameOrig(*sp_Model->GetFrame(frameInd));
+    
     if (mode=="init")
     {
         sMark = *sp_Model->GetMark(0);
         tMark = *sp_Model->GetMark(1);
         frameInd = sMark.frame;
-               
-        initBB = IntRect(sMark.lx, sMark.ly, sMark.rx-sMark.lx, sMark.ry-sMark.ly);
+        float scalex, scaley;
+        scalex = 1.0*frameOrig.rows/conf.frameHeight;
+        scaley = 1.0*frameOrig.cols/conf.frameWidth;
+        initBB = IntRect(sMark.lx/scalex, sMark.ly/scaley, (sMark.rx-sMark.lx)/scalex, (sMark.ry-sMark.ly)/scaley);
     }
-    Mat result(conf.frameHeight, conf.frameWidth, CV_8UC3);
-    Mat frame;
-    Mat frameOrig(*sp_Model->GetFrame(frameInd));
     if (frameOrig.empty())
     {
         cout << "error: could not read frame" << endl;
