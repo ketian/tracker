@@ -64,7 +64,7 @@ void TrafficSignViewModel::ReadMark(const string &filename) {
 void rectangle(Mat& rMat, const FloatRect& rRect, const Scalar& rColour)
 {
 	IntRect r(rRect);
-	rectangle(rMat, Point(r.XMin(), r.YMin()), Point(r.XMax(), r.YMax()), rColour);
+	rectangle(rMat, Point(r.XMin(), r.YMin()), Point(r.XMax(), r.YMax()), rColour, 3);
 }
 
 void TrafficSignViewModel::TrackSign(const string &mode) {
@@ -101,12 +101,17 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
     if (tracker.IsInitialised())
     {
         tracker.Track(frame);
-        rectangle(result, tracker.GetBB(), CV_RGB(0, 255, 0));
         //TODO
-        //if (outFile)
-        //{
-        //    const FloatRect& bb = tracker.GetBB();
-        //}
+        if (true)   //(outFile)
+        {
+            const IntRect& bb = tracker.GetBB();
+            Mat image(result, cv::Rect(bb.XMin(), bb.YMin(), bb.Width(), bb.Height()));
+            char outImage[128];
+            sprintf(outImage, "image/%d.jpg", frameInd);
+            //cout << "Write to: " << outImage << endl;
+            imwrite(outImage, image);
+        }
+        rectangle(result, tracker.GetBB(), CV_RGB(0, 255, 0));
     }
     sp_Model->SetImage(result);
     RefreshImage();

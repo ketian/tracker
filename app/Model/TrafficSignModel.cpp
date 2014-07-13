@@ -21,6 +21,7 @@ TrafficSignModel::~TrafficSignModel() {}
 void TrafficSignModel::OpenVideo(const string &filename) {
     sp_video->OpenVideo(filename);
     sp_image->SetImage(*(sp_video->GetFrame()));
+    videoName = filename;
 }
 
 void TrafficSignModel::ReadMark(const string &filename) {
@@ -53,4 +54,8 @@ void TrafficSignModel::SetImage(const cv::Mat &image) {
 
 cv::Mat *TrafficSignModel::GetFrame(int frameInd) {
     return sp_video->GetFrame(frameInd);
+}
+
+const string &TrafficSignModel::GetVideoName() {
+    return videoName;
 }

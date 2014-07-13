@@ -18,6 +18,7 @@ private:
     boost::shared_ptr<VideoData> sp_video;
     boost::shared_ptr<MarkData> sp_sMark, sp_tMark;
     boost::shared_ptr<Config> sp_config;
+    std::string videoName;
     
 public:
     TrafficSignModel();
@@ -30,6 +31,7 @@ public:
     boost::shared_ptr<Config> GetConfig();
     boost::shared_ptr<MarkData> GetMark(int);
     cv::Mat *GetFrame(int frameInd);
+    const std::string &GetVideoName();
     
 };
 
