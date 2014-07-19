@@ -2,7 +2,7 @@
 quietMode = 0
 
 # debug mode enables additional drawing and visualization.
-debugMode = 1
+debugMode = 0
 
 # base path for video sequences.
 sequenceBasePath = sequences
@@ -19,10 +19,10 @@ sequenceName = girl
 # the input image will be scaled to this size.
 #frameWidth = 320
 #frameHeight = 240
-frameWidth = 640
-frameHeight = 480
-#frameWidth = 1280
-#frameHeight = 960
+#frameWidth = 640
+#frameHeight = 480
+frameWidth = 1280
+frameHeight = 960
 
 # seed for random number generator.
 seed = 0
@@ -33,7 +33,7 @@ searchRadius = 30
 # SVM regularization parameter.
 svmC = 100.0
 # SVM budget size (0 = no budget).
-svmBudgetSize = 100
+svmBudgetSize = 30
 
 # image features to use.
 # format is: feature kernel [kernel-params]
@@ -42,6 +42,6 @@ svmBudgetSize = 100
 #   kernel = gaussian/linear/intersection/chi2
 #   for kernel=gaussian, kernel-params is sigma
 # multiple features can be specified and will be combined
-feature = haar gaussian 0.2
-#feature = raw gaussian 0.1
+#feature = haar gaussian 0.2
+feature = raw gaussian 0.1
 #feature = histogram intersection

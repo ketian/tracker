@@ -54,7 +54,55 @@ vector<FloatRect> Sampler::RadialSamples(FloatRect centre, int radius, int nr, i
 			samples.push_back(s);
 		}
 	}
-	
+
+//Add bigger samples
+    //s.SetHeight(s.Height()+1); s.SetWidth(s.Width()+1);
+    s.SetHeight(s.Height()+2); s.SetWidth(s.Width()+2);
+    samples.push_back(s);
+    for (int ir = 1; ir <= nr; ++ir)
+    {
+        float phase = (ir % 2)*tstep/2;
+        for (int it = 0; it < nt; ++it)
+        {
+            float dx = ir*rstep*cosf(it*tstep+phase);
+            float dy = ir*rstep*sinf(it*tstep+phase);
+            s.SetXMin(centre.XMin()+dx);
+            s.SetYMin(centre.YMin()+dy);
+            samples.push_back(s);
+        }
+    }
+/*
+    s.SetWidth(s.Width()+1);
+    samples.push_back(s);
+    for (int ir = 1; ir <= nr; ++ir)
+    {
+        float phase = (ir % 2)*tstep/2;
+        for (int it = 0; it < nt; ++it)
+        {
+            float dx = ir*rstep*cosf(it*tstep+phase);
+            float dy = ir*rstep*sinf(it*tstep+phase);
+            s.SetXMin(centre.XMin()+dx);
+            s.SetYMin(centre.YMin()+dy);
+            samples.push_back(s);
+        }
+    }
+    s.SetHeight(s.Height()-1);
+    samples.push_back(s);
+    for (int ir = 1; ir <= nr; ++ir)
+    {
+        float phase = (ir % 2)*tstep/2;
+        for (int it = 0; it < nt; ++it)
+        {
+            float dx = ir*rstep*cosf(it*tstep+phase);
+            float dy = ir*rstep*sinf(it*tstep+phase);
+            s.SetXMin(centre.XMin()+dx);
+            s.SetYMin(centre.YMin()+dy);
+            samples.push_back(s);
+        }
+    }
+*/
+//Add bigger samples
+
 	return samples;
 }
 
@@ -82,6 +130,66 @@ vector<FloatRect> Sampler::PixelSamples(FloatRect centre, int radius, bool halfS
 			samples.push_back(s);
 		}
 	}
-	
+
+//Add bigger samples
+    //s.SetHeight(s.Height()+1);s.SetWidth(s.Width()+1);
+    s.SetHeight(s.Height()+2); s.SetWidth(s.Width()+2);
+    samples.push_back(s);
+    for (int iy = -radius; iy <= radius; ++iy)
+    {
+        for (int ix = -radius; ix <= radius; ++ix)
+        {
+            if (ix*ix+iy*iy > r2) continue;
+            if (iy == 0 && ix == 0) continue; // already put this one at the start
+
+            int x = (int)centre.XMin() + ix;
+            int y = (int)centre.YMin() + iy;
+            if (halfSample && (ix % 2 != 0 || iy % 2 != 0)) continue;
+
+            s.SetXMin(x);
+            s.SetYMin(y);
+            samples.push_back(s);
+        }
+    }
+/*
+    s.SetWidth(s.Width()+1);
+    samples.push_back(s);
+    for (int iy = -radius; iy <= radius; ++iy)
+    {
+        for (int ix = -radius; ix <= radius; ++ix)
+        {
+            if (ix*ix+iy*iy > r2) continue;
+            if (iy == 0 && ix == 0) continue; // already put this one at the start
+
+            int x = (int)centre.XMin() + ix;
+            int y = (int)centre.YMin() + iy;
+            if (halfSample && (ix % 2 != 0 || iy % 2 != 0)) continue;
+
+            s.SetXMin(x);
+            s.SetYMin(y);
+            samples.push_back(s);
+        }
+    }
+    s.SetHeight(s.Height()-1);
+    samples.push_back(s);
+    for (int iy = -radius; iy <= radius; ++iy)
+    {
+        for (int ix = -radius; ix <= radius; ++ix)
+        {
+            if (ix*ix+iy*iy > r2) continue;
+            if (iy == 0 && ix == 0) continue; // already put this one at the start
+
+            int x = (int)centre.XMin() + ix;
+            int y = (int)centre.YMin() + iy;
+            if (halfSample && (ix % 2 != 0 || iy % 2 != 0)) continue;
+
+            s.SetXMin(x);
+            s.SetYMin(y);
+            samples.push_back(s);
+        }
+    }
+*/
+//Add bigger sample
+
 	return samples;
 }

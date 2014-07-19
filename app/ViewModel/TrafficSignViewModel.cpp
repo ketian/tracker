@@ -8,7 +8,7 @@
 #include "Algorithm/Config.h"
 #include <fstream>
 
-#define SPEED 2
+#define SPEED 1
 
 using namespace std;
 using namespace cv;
@@ -81,20 +81,23 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
     static int frameInd;
     static MarkData sMark, tMark;
     
-    Mat result(conf.frameHeight, conf.frameWidth, CV_8UC3);
-    Mat frame;
-    Mat frameOrig(*sp_Model->GetFrame(frameInd));
-    
     if (mode=="init")
     {
         sMark = *sp_Model->GetMark(0);
         tMark = *sp_Model->GetMark(1);
         frameInd = sMark.frame;
         float scalex, scaley;
-        scalex = 1.0*frameOrig.rows/conf.frameHeight;
-        scaley = 1.0*frameOrig.cols/conf.frameWidth;
+        Mat frame(*sp_Model->GetFrame(0));
+        scalex = 1.0*frame.rows/conf.frameHeight;
+        scaley = 1.0*frame.cols/conf.frameWidth;
+        //cout << scalex << ' ' << scaley << endl;
         initBB = IntRect(sMark.lx/scalex, sMark.ly/scaley, (sMark.rx-sMark.lx)/scalex, (sMark.ry-sMark.ly)/scaley);
     }
+    
+    Mat result(conf.frameHeight, conf.frameWidth, CV_8UC3);
+    Mat frame;
+    Mat frameOrig(*sp_Model->GetFrame(frameInd));
+    
     if (frameOrig.empty())
     {
         cout << "error: could not read frame" << endl;
@@ -104,6 +107,7 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
     frame.copyTo(result);
     if (frameInd == sMark.frame)
     {
+        tracker.Reset();
         tracker.Initialise(frame, initBB);
     }
     if (tracker.IsInitialised())

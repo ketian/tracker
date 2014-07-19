@@ -65,6 +65,7 @@ void Traffic_signMainWindow::on_VideoButton_clicked()
             tr("Open Video"), ".", 
             tr("Video Files (*.mp4 *.avi)"));
 	qDebug()<<"filenames:"<<fileName;
+    if (fileName.toStdString()=="") return;
 	boost::shared_ptr<OpenCommandParam> param = boost::make_shared<OpenCommandParam>();
 	param->SetParam(fileName.toStdString());
 	sp_OpenCommand->Execute(boost::static_pointer_cast<ICommandParam>(param));
@@ -82,6 +83,7 @@ void Traffic_signMainWindow::on_RunButton_clicked()
             tr("Open Mark Information"), ".", 
             tr("Mark Files (*.txt)"));
 	qDebug()<<"filenames:"<<fileName;
+    if (fileName.toStdString()=="") return;
     boost::shared_ptr<OpenCommandParam> param = boost::make_shared<OpenCommandParam>();
 	param->SetParam(fileName.toStdString());
 	sp_ReadCommand->Execute(boost::static_pointer_cast<ICommandParam>(param));
