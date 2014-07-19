@@ -56,7 +56,11 @@ void TrafficSignModel::SetImage(const cv::Mat &image) {
 
 void TrafficSignModel::SetMark(const cv::Mat &image) {
     sp_mark->SetImage(image);
-}    
+}
+
+cv::Mat *TrafficSignModel::GetFrame() {
+    return sp_video->GetFrame();
+}
 
 cv::Mat *TrafficSignModel::GetFrame(int frameInd) {
     return sp_video->GetFrame(frameInd);

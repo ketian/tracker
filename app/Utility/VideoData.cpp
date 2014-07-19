@@ -34,13 +34,9 @@ Mat * VideoData::GetFrame()
         exit(0);
     }
 
-    cap.set(CV_CAP_PROP_POS_FRAMES, currentFrame++);
-
-    if(!cap.read(frame)) // read fail
-    {
-        cout << "Fail to read the video!" << endl;
-        exit(0);
-    }
+    //cap.set(CV_CAP_PROP_POS_FRAMES, currentFrame++);
+    cap>>frame;
+    
 ///DEBUG
 //cout<<"Success to read"<<endl;
 //namedWindow("Display Image", CV_WINDOW_AUTOSIZE );

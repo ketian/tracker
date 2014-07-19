@@ -31,6 +31,7 @@ public:
     boost::shared_ptr<ImageData> GetImage(int);
     boost::shared_ptr<Config> GetConfig();
     boost::shared_ptr<MarkData> GetMark(int);
+    cv::Mat *GetFrame();
     cv::Mat *GetFrame(int frameInd);
     const std::string &GetVideoName();
     

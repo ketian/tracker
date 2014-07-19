@@ -80,7 +80,9 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
     static FloatRect initBB;
     static int frameInd;
     static MarkData sMark, tMark;
-    
+    //static TickMeter timer;
+    static Mat frameOrig;
+
     if (mode=="init")
     {
         sMark = *sp_Model->GetMark(0);
@@ -92,12 +94,13 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
         scaley = 1.0*frame.cols/conf.frameWidth;
         //cout << scalex << ' ' << scaley << endl;
         initBB = IntRect(sMark.lx/scalex, sMark.ly/scaley, (sMark.rx-sMark.lx)/scalex, (sMark.ry-sMark.ly)/scaley);
+        frameOrig=sp_Model->GetFrame(frameInd)->clone();
     }
-    
+    else frameOrig=sp_Model->GetFrame()->clone();
+
     Mat result(conf.frameHeight, conf.frameWidth, CV_8UC3);
     Mat frame;
-    Mat frameOrig(*sp_Model->GetFrame(frameInd));
-    
+
     if (frameOrig.empty())
     {
         cout << "error: could not read frame" << endl;
@@ -110,9 +113,18 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
         tracker.Reset();
         tracker.Initialise(frame, initBB);
     }
+
+
     if (tracker.IsInitialised())
     {
+        //timer.reset();
+        //timer.start();
+
         tracker.Track(frame);
+
+        //timer.stop();
+        //cout << "Tracking: " << timer.getTimeMilli() << endl;
+
         //TODO
         if (true)   //(outFile)
         {
@@ -127,10 +139,17 @@ void TrafficSignViewModel::TrackSign(const string &mode) {
         rectangle(result, tracker.GetBB(), CV_RGB(0, 255, 0));
     }
     //else sp_Model->SetMark(result);
+
+    //timer.reset();
+    //timer.start();
+
     sp_Model->SetImage(result);
     RefreshImage();
     if (frameInd >= tMark.frame) fireEvent("TrackDone");
     frameInd += SPEED;
+
+    //timer.stop();
+    //cout << "Display: " << timer.getTimeMilli() << endl;
 }
 
 void TrafficSignViewModel::RefreshImage() {
