@@ -4,7 +4,11 @@
 #include <boost/make_shared.hpp>
 #include <fstream>
 
+#include "Algorithm/Tracker.h"
+#include "Algorithm/Config.h"
+
 using namespace std;
+using namespace cv;
 
 TrafficSignModel::TrafficSignModel() {
     sp_image = boost::make_shared<ImageData>();
@@ -68,4 +72,86 @@ cv::Mat *TrafficSignModel::GetFrame(int frameInd) {
 
 const string &TrafficSignModel::GetVideoName() {
     return videoName;
+}
+
+
+void rectangle(Mat& rMat, const FloatRect& rRect, const Scalar& rColour)
+{
+	IntRect r(rRect);
+	rectangle(rMat, Point(r.XMin(), r.YMin()), Point(r.XMax(), r.YMax()), rColour, 2);
+}
+
+bool TrafficSignModel::TrackSign(const string &mode) {
+
+    //cout << "TrackSign" << endl;
+    
+    static Config conf(*GetConfig());
+    static Tracker tracker(conf);
+    static FloatRect initBB;
+    static int frameInd;
+    static MarkData sMark, tMark;
+    //static TickMeter timer;
+    static Mat frameOrig;
+
+    if (mode=="init")
+    {
+        sMark = *GetMark(0);
+        tMark = *GetMark(1);
+        frameInd = sMark.frame;
+        float scalex, scaley;
+        Mat frame(*GetFrame(0));
+        scalex = 1.0*frame.rows/conf.frameHeight;
+        scaley = 1.0*frame.cols/conf.frameWidth;
+        //cout << scalex << ' ' << scaley << endl;
+        initBB = IntRect(sMark.lx/scalex, sMark.ly/scaley, (sMark.rx-sMark.lx)/scalex, (sMark.ry-sMark.ly)/scaley);
+        frameOrig=GetFrame(frameInd)->clone();
+    }
+    else frameOrig=GetFrame()->clone();
+
+    Mat result(conf.frameHeight, conf.frameWidth, CV_8UC3);
+    Mat frame;
+
+    if (frameOrig.empty())
+    {
+        cout << "error: could not read frame" << endl;
+        exit(-1);
+    }
+    resize(frameOrig, frame, Size(conf.frameWidth, conf.frameHeight));
+    frame.copyTo(result);
+    if (frameInd == sMark.frame)
+    {
+        tracker.Reset();
+        tracker.Initialise(frame, initBB);
+    }
+
+
+    if (tracker.IsInitialised())
+    {
+        //timer.reset();
+        //timer.start();
+
+        tracker.Track(frame);
+
+        //timer.stop();
+        //cout << "Tracking: " << timer.getTimeMilli() << endl;
+
+        if (true)   //(outFile)
+        {
+            const IntRect& bb = tracker.GetBB();
+            Mat image(result, cv::Rect(bb.XMin(), bb.YMin(), bb.Width(), bb.Height()));
+            char outImage[128];
+            sprintf(outImage, "image/%d.jpg", frameInd/SPEED);
+            //cout << "Write to: " << outImage << endl;
+            imwrite(outImage, image);
+            SetMark(image);
+        }
+        rectangle(result, tracker.GetBB(), CV_RGB(0, 255, 0));
+    }
+    //else SetMark(result);
+
+    SetImage(result);
+    if (frameInd >= tMark.frame) return true;
+    frameInd += SPEED;
+    
+    return false;
 }

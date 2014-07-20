@@ -10,6 +10,8 @@
 #include "Algorithm/Tracker.h"
 #include "Algorithm/Config.h"
 
+#define SPEED 1
+
 typedef std::list<MarkData> MarksData;
 
 class TrafficSignModel {
@@ -28,6 +30,7 @@ public:
     void SetImage(const cv::Mat &image);
     void SetMark(const cv::Mat &image);
     void ReadMark(const std::string &filename);
+    bool TrackSign(const std::string &mode);
     boost::shared_ptr<ImageData> GetImage(int);
     boost::shared_ptr<Config> GetConfig();
     boost::shared_ptr<MarkData> GetMark(int);
