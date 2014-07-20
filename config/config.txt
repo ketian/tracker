@@ -33,7 +33,7 @@ searchRadius = 30
 # SVM regularization parameter.
 svmC = 100.0
 # SVM budget size (0 = no budget).
-svmBudgetSize = 30
+svmBudgetSize = 3
 
 # image features to use.
 # format is: feature kernel [kernel-params]
