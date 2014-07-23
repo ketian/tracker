@@ -17,6 +17,6 @@ project(traffic_sign)
 # ----------------------------------------------------------------------
 # Site specific configurations
 
-#include("./common_settings.cmake")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
 add_subdirectory(./app)
 

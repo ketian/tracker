@@ -34,8 +34,4 @@
 ----
 按姓名首字母排序：
 
-- 高涛：GUI, Application frame
-- 李逸婷：Imgae processing (feature extraction), classes building
-- 毛晨炀：Drawing rectangle, reults saving 
-- 徐超颖：Video input, classes building
-- 徐可添（组长）：Picture processing, tracking (based on Struck, ICCV 2011), MVVM architecture
+- 高涛：图形界面，应用程序框架- 李逸婷：图像读写与处理- 毛晨炀：结果标记与保存、测试 - 徐超颖：视频读取、测试- 徐可添（组长）：应用程序框架、追踪算法（基于Struck, ICCV 2011）
